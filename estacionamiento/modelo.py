@@ -134,7 +134,7 @@ def consultar(tree):
 
     
 # Función para borrar una reserva
-def borrar():
+def borrar(tree):
     selection = tree.selection()
     if not selection:
         showerror("Error", "seleccione un registro para borrar.")
@@ -148,7 +148,7 @@ def borrar():
     con.close()
     
     #showinfo("Información", "Se borró el registro de esa cochera")
-    consultar()
+    consultar(tree)
 
 # Crear tabla si no existe
 crear_tabla()
