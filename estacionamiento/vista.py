@@ -36,5 +36,27 @@ class Vista:
         self.tree.heading("Teléfono", text="Teléfono")
         self.tree.grid(row=7, column=0, columnspan=4)
 
+                ##################################################
+        # Función para updatear las campos cuando selecciono un item
+        tree.bind("<<TreeviewSelect>>", actualizar)
+        
+        def actualizar(evento):
+            selection = tree.selection()
+            if selection: 
+                cochera_seleccionada = tree.item(selection[0], "values")[0]  
+                cochera.set(cochera_seleccionada)  # hago  la cochera para ahorrarme pasos al modificar
+            if selection: 
+                patente_seleccionada = tree.item(selection[0], "values")[1]  
+                patente.set(patente_seleccionada)  # hago  la patente para ahorrarme clicks al modificar
+            if selection: 
+                nombre_seleccionada = tree.item(selection[0], "values")[2]  
+                nombre.set(nombre_seleccionada)  # hago  el nombre para ahorrarme tipeo al modificar
+            if selection: 
+                telefono_seleccionada = tree.item(selection[0], "values")[3]  
+                telefono.set(telefono_seleccionada)  # hago  el nombre para ahorrarme tipeo al modificar
+        
+            
+        ##################################################
 
-        root.mainloop()
+
+        
