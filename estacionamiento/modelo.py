@@ -26,7 +26,7 @@ def crear_tabla():
 ########################################################
 ########################################################
     
-def modificar():
+def modificar(cochera,patente,nombre,telefono,tree):
     selection = tree.selection()
     if not selection:
         showerror("Error", "seleccione el registro a Modificar")
@@ -64,7 +64,7 @@ def modificar():
     con.close()
     # Refrescar la tabla mostrada en treeview
     #showinfo("Información", "Se modificó el registro de esa cochera")
-    consultar()
+    consultar(tree)
 
 
 

@@ -25,8 +25,8 @@ class Vista:
         # Botones
         Button(root, text="Ingresar Auto", command=lambda:insertar_registro(self.cochera,self.patente,self.nombre,self.telefono,self.tree)).grid(row=5, column=0)
         Button(root, text="Consultar", command=lambda:consultar(self.tree)).grid(row=5, column=1)
-        Button(root, text="Borrar", command=lambda:borrar()).grid(row=5, column=2)
-        Button(root, text="Modificar", command=lambda:modificar()).grid(row=5, column=3)
+        Button(root, text="Borrar", command=lambda:borrar(self.tree)).grid(row=5, column=2)
+        Button(root, text="Modificar", command=lambda:modificar(self.cochera,self.patente,self.nombre,self.telefono,self.tree)).grid(row=5, column=3)
 
         # TREEVIEW
         self.tree = ttk.Treeview(root, columns=("Cochera", "Patente", "Nombre", "Teléfono"), show="headings")
@@ -54,7 +54,7 @@ class Vista:
                 telefono_seleccionada = self.tree.item(selection[0], "values")[3]  
                 self.telefono.set(telefono_seleccionada)  # hago  el nombre para ahorrarme tipeo al modificar
         
-            self.tree.bind("<<TreeviewSelect>>", actualizar)
+        self.tree.bind("<<TreeviewSelect>>", actualizar)
         ##################################################
 
 
