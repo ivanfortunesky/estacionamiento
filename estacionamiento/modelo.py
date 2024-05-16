@@ -1,6 +1,6 @@
 import sqlite3
 import re
-from vista import Vista
+#from vista import Vista
 from tkinter.messagebox import showerror
 
 def conectar():
@@ -72,7 +72,7 @@ def modificar():
 ########################################################
 
 # Función para insertar un nuevo registro
-def insertar_registro():
+def insertar_registro(cochera,patente,nombre,telefono,tree):
     
     
     cochera_local = cochera.get()
@@ -107,12 +107,12 @@ def insertar_registro():
     con.close()
     
     #showinfo("Información", "Registro insertado correctamente.")
-    consultar()
+    consultar(tree)
 
 
 
 # Función para consultar registros
-def consultar():
+def consultar(tree):
     # Limpiar el Treeview antes de agregar nuevos datos
     for row in tree.get_children():
         tree.delete(row)
@@ -131,25 +131,7 @@ def consultar():
     con.close()
     """
 
-##################################################
-# Función para updatear las campos cuando selecciono un item
-def actualizar(evento):
-    selection = tree.selection()
-    if selection: 
-        cochera_seleccionada = tree.item(selection[0], "values")[0]  
-        cochera.set(cochera_seleccionada)  # hago  la cochera para ahorrarme pasos al modificar
-    if selection: 
-        patente_seleccionada = tree.item(selection[0], "values")[1]  
-        patente.set(patente_seleccionada)  # hago  la patente para ahorrarme clicks al modificar
-    if selection: 
-        nombre_seleccionada = tree.item(selection[0], "values")[2]  
-        nombre.set(nombre_seleccionada)  # hago  el nombre para ahorrarme tipeo al modificar
-    if selection: 
-        telefono_seleccionada = tree.item(selection[0], "values")[3]  
-        telefono.set(telefono_seleccionada)  # hago  el nombre para ahorrarme tipeo al modificar
-   
-    
-##################################################
+
     
 # Función para borrar una reserva
 def borrar():

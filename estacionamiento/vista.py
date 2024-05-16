@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-import modelo
+from modelo import *
 
 class Vista:
     def __init__(self, root):
@@ -17,16 +17,16 @@ class Vista:
         Entry(root, textvariable=self.cochera).grid(row=1, column=1)
         Label(root, text="Patente").grid(row=2, column=0, sticky=W)
         Entry(root, textvariable=self.patente).grid(row=2, column=1)
-        Label(root, text="Nombre").grid(row=3, column=0, sticky=W)
+        Label(root, text="Nombre y Apellido").grid(row=3, column=0, sticky=W)
         Entry(root, textvariable=self.nombre).grid(row=3, column=1)
         Label(root, text="Teléfono").grid(row=4, column=0, sticky=W)
         Entry(root, textvariable=self.telefono).grid(row=4, column=1)
 
         # Botones
-        Button(root, text="Ingresar Auto", command=lambda:self.insertar_registro).grid(row=5, column=0)
-        Button(root, text="Consultar", command=lambda:self.consultar).grid(row=5, column=1)
-        Button(root, text="Borrar", command=lambda:self.borrar).grid(row=5, column=2)
-        Button(root, text="Modificar", command=lambda:self.modificar).grid(row=5, column=3)
+        Button(root, text="Ingresar Auto", command=lambda:insertar_registro(self.cochera,self.patente,self.nombre,self.telefono,self.tree)).grid(row=5, column=0)
+        Button(root, text="Consultar", command=lambda:consultar(self.tree)).grid(row=5, column=1)
+        Button(root, text="Borrar", command=lambda:borrar()).grid(row=5, column=2)
+        Button(root, text="Modificar", command=lambda:modificar()).grid(row=5, column=3)
 
         # TREEVIEW
         self.tree = ttk.Treeview(root, columns=("Cochera", "Patente", "Nombre", "Teléfono"), show="headings")
@@ -38,8 +38,7 @@ class Vista:
 
                 ##################################################
         # Función para updatear las campos cuando selecciono un item
-        self.tree.bind("<<TreeviewSelect>>", actualizar)
-
+        
         def actualizar(evento):
             selection = self.tree.selection()
             if selection: 
@@ -55,7 +54,7 @@ class Vista:
                 telefono_seleccionada = self.tree.item(selection[0], "values")[3]  
                 self.telefono.set(telefono_seleccionada)  # hago  el nombre para ahorrarme tipeo al modificar
         
-            
+            self.tree.bind("<<TreeviewSelect>>", actualizar)
         ##################################################
 
 
