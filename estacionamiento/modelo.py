@@ -13,6 +13,7 @@ def conectar():
 def crear_tabla():
     con = conectar()
     cursor = con.cursor()
+    print("Estoy dentro de crear_tabla()")
     cursor.execute('''CREATE TABLE IF NOT EXISTS estacionamiento (
                       id INTEGER PRIMARY KEY,
                       cochera INTEGER,
@@ -21,6 +22,8 @@ def crear_tabla():
                       telefono TEXT)''')
     con.commit()
     con.close()
+# Crear tabla si no existe
+crear_tabla()
 ########################################################
 ########################################################
     
@@ -66,8 +69,10 @@ def modificar(cochera,patente,nombre,telefono,tree):
     con.commit()
     con.close()
     # Refrescar la tabla mostrada en treeview
-    #showinfo("Información", "Se modificó el registro de esa cochera")
     consultar(tree)
+    print(f"Estoy dentro de modificar y se modificó el registro de la cochera N# {cochera_local}")
+    
+    
 
 
 
@@ -153,8 +158,6 @@ def borrar(tree):
     #showinfo("Información", "Se borró el registro de esa cochera")
     consultar(tree)
 
-# Crear tabla si no existe
-crear_tabla()
 
 
 ##################################################
