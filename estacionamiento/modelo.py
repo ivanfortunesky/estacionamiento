@@ -1,10 +1,13 @@
 import sqlite3
 import re
-#from vista import Vista
+import os
 from tkinter.messagebox import showerror
 
 def conectar():
-    con = sqlite3.connect("estacionamiento.db")
+    modelo_path = os.path.dirname(os.path.abspath(__file__))
+    estacionamiento_db_path = os.path.join(modelo_path, "estacionamiento.db")
+    print(estacionamiento_db_path)
+    con = sqlite3.connect(estacionamiento_db_path)
     return con
 
 def crear_tabla():
