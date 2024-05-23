@@ -1,6 +1,7 @@
 import sqlite3
 import re
 import os
+import peewee
 from tkinter.messagebox import showerror
 
 def conectar():
