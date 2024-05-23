@@ -11,8 +11,8 @@ def conectar():
         print("Path a la base de datos: ",estacionamiento_db_path)
         con = sqlite3.connect(estacionamiento_db_path)
         return con
-     except: 
-         print(f"except dentro de conectar y se produjo un error dentor del try ")
+     except Exception as error: 
+         print(f"except dentro de conectar y se produjo el error {error}")
 
 def crear_tabla():
     try:
@@ -27,8 +27,8 @@ def crear_tabla():
                         telefono TEXT)''')
         con.commit()
         con.close()
-    except: 
-        print(f"except dentro de crear_tabla y se produjo un error dentor del try ")
+    except Exception as error: 
+        print(f"except dentro de crear_tabla y se produjo el error {error}")
 # Crear tabla si no existe
 crear_tabla()
 ########################################################
@@ -79,8 +79,8 @@ def modificar(cochera,patente,nombre,telefono,tree):
         # Refrescar la tabla mostrada en treeview
         consultar(tree)
         print(f"Estoy dentro de modificar y se modificó el registro de la cochera N# {cochera_local}")
-    except: 
-        print(f"except dentro de modificar y se produjo un error dentor del try ")
+    except Exception as error: 
+        print(f"except dentro de modificar y se produjo el error {error}")
 
 
 
@@ -123,8 +123,8 @@ def insertar_registro(cochera,patente,nombre,telefono,tree):
         
         #showinfo("Información", "Registro insertado correctamente.")
         consultar(tree)
-    except: 
-        print(f"except dentro de insertar_registro y se produjo un error dentor del try")
+    except Exception as error: 
+        print(f"except dentro de insertar_registro y se produjo el error {error}")
 
 # Función para consultar registros
 def consultar(tree):
@@ -141,8 +141,8 @@ def consultar(tree):
         filas_ordenadas = sorted(filas, key=lambda x: x[1])
         for fila in filas_ordenadas:
             tree.insert("", "end", values=(fila[1], fila[2], fila[3], fila[4]))
-    except: 
-        print(f"except dentro de consultar(tree) y se produjo un error dentor del try")
+    except Exception as error: 
+        print(f"except dentro de consultar(tree) y se produjo el error {error}")
 
     
 # Función para borrar una reserva
@@ -162,8 +162,8 @@ def borrar(tree):
         
         #showinfo("Información", "Se borró el registro de esa cochera")
         consultar(tree)
-    except: 
-        print(f"except dentro de borrar(tree) y se produjo un error dentor del try")
+    except Exception as error: 
+        print(f"except dentro de borrar(tree) y se produjo el error {error}")
 
 
 ##################################################
@@ -178,8 +178,8 @@ def validar_nombre(expresion_a_validar):
             else: 
                 showerror("Error", "Completar Nombre y Apellido, solo alfanumerico.")
                 return "<ERR formato Nom>"
-        except: 
-            print(f"except dentro de validar_nombre(expresion_a_validar) y se produjo un error dentor del try")
+        except Exception as error: 
+            print(f"except dentro de validar_nombre(expresion_a_validar) y se produjo el error {error}")
 
 def validar_telefono(expresion_a_validar):
         try:
@@ -190,13 +190,13 @@ def validar_telefono(expresion_a_validar):
             else: 
                 showerror("Error", "Completar telefono completo, solo números.")
                 return "<ERR formato Tel>"
-        except: 
-            print(f"except dentro de validar_telefono(expresion_a_validar) y se produjo un error dentor del try")
+        except Exception as error: 
+            print(f"except dentro de validar_telefono(expresion_a_validar) y se produjo el error {error}")
 
 def validar_patente(expresion_a_validar):
     try:
         return expresion_a_validar.upper()
-    except: 
-        print(f"except dentro de validar_patente(expresion_a_validar) y se produjo un error dentor del try")
+    except Exception as error: 
+        print(f"except dentro de validar_patente(expresion_a_validar) y se produjo el error {error}")
         
 ##################################################  

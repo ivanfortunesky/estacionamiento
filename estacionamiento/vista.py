@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from modelo import *
+#from modelo_peewee import *
 
 class Vista:
     def __init__(self, root):
