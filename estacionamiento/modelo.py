@@ -100,22 +100,16 @@ def insertar_registro(cochera,patente,nombre,telefono,tree):
         if cochera_local == "" or patente_local == "" or nombre_local == "" or telefono_local == "":
             showerror("Error", "Por favor, complete todos los campos.")
             return   
-        
-        # Validar que el teléfono contenga solo dígitos
-        """if not telefono_local.isdigit():
-            showerror("Error", "El teléfono debe contener solo números.")
-            return
-        """
+       
         # Conectar a la base de datos
         con = conectar()
         cursor = con.cursor()
         
         # Verificar si la cochera está ocupada
         cursor.execute('''SELECT * FROM estacionamiento WHERE cochera = ?''', (cochera_local,))
-        if cursor.fetchone():
+        if cursor.fetchone():            
             showerror("Error", f"La cochera {cochera_local} ya está ocupada.")
-            return
-        
+            return        
         # Insertar el registro
         cursor.execute('''INSERT INTO estacionamiento (cochera, patente, nombre, telefono) VALUES (?, ?, ?, ?)''', (cochera_local, patente_local, nombre_local, telefono_local))
         con.commit()

@@ -1,4 +1,5 @@
 from tkinter import Tk
+from tkinter import ttk
 import vista
 
 class Controlador:
