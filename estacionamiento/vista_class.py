@@ -1,13 +1,14 @@
 from tkinter import *
 from tkinter import ttk
-from modelo import *
+#from modelo import *
 #from modelo_peewee import *
-#from modelo_class import Modelo
+from modelo_class import Modelo
 
 
 class Vista:
     def __init__(self, root):
         self.root = root
+        self.modelo = Modelo()
         self.root.title("Estacionamiento")
 
         self.cochera = StringVar()
@@ -27,10 +28,10 @@ class Vista:
 
 
         # Botones
-        Button(root, text="Ingresar Auto", command=lambda:insertar_registro(self.cochera,self.patente,self.nombre,self.telefono,self.tree)).grid(row=5, column=0)
-        Button(root, text="Consultar", command=lambda:consultar(self.tree)).grid(row=5, column=1)
-        Button(root, text="Borrar", command=lambda:borrar(self.tree)).grid(row=5, column=2)
-        Button(root, text="Modificar", command=lambda:modificar(self.cochera,self.patente,self.nombre,self.telefono,self.tree)).grid(row=5, column=3)
+        Button(root, text="Ingresar Auto", command=lambda:self.modelo.insertar_registro(self.cochera,self.patente,self.nombre,self.telefono,self.tree)).grid(row=5, column=0)
+        Button(root, text="Consultar", command=lambda:self.modelo.consultar(self.tree)).grid(row=5, column=1)
+        Button(root, text="Borrar", command=lambda:self.modelo.borrar(self.tree)).grid(row=5, column=2)
+        Button(root, text="Modificar", command=lambda:self.modelo.modificar(self.cochera,self.patente,self.nombre,self.telefono,self.tree)).grid(row=5, column=3)
 
 
         # TREEVIEW

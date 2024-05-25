@@ -10,6 +10,7 @@ class Modelo:
     def __init__(self):
         self.conectar()
         self.crear_tabla()
+       # self.tree = tree
         
     def conectar(self):
         try:
@@ -126,6 +127,7 @@ class Modelo:
     # Función para consultar registros
     def consultar(self,tree):
         try:
+            #self.tree=tree
             # Limpiar el Treeview antes de agregar nuevos datos
             for row in tree.get_children():
                 tree.delete(row)
